@@ -1,2 +1,2 @@
 # MPCR-Rover
-code for the MPCR club 
+This is a copy of the MPCR Drone Code.
