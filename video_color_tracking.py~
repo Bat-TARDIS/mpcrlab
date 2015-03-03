@@ -1,4 +1,0 @@
-import numpy as np
-import cv2
-
-livevideo = cv2.VideoCapture(0)
