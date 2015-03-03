@@ -4,22 +4,26 @@ import cv2
 #Import Numpy
 import numpy as np
 
+#Open WebCam
 camera_feed = cv2.VideoCapture(0)
 
 while(1):
 
-    _,frame = camera_feed.read()
+     #Read WebCam
+    _,frame = camera_feed.read() 
     #Convert the current frame to HSV
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
     #Define the threshold for finding a blue object with hsv
+    #Lower Limits of Blue
     lower_blue = np.array([100,100,100])
+    #Higher Limit of Blue
     upper_blue = np.array([150,255,255])
 
     #Create a mask where anything blue appears white and everything else is black
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
-    #Get rid of background noise using erosion and fill in the holes using dilation and erode the final image on last time
+    #Get rid of background noise
     element = cv2.getStructuringElement(cv2.MORPH_RECT,(3,3))
     mask = cv2.erode(mask,element, iterations=2)
     mask = cv2.dilate(mask,element,iterations=2)
@@ -34,12 +38,13 @@ while(1):
         if currentArea > maximumArea:
             bestContour = contour
             maximumArea = currentArea
-     #Create a bounding box around the biggest blue object
+            
+     #Creates a box to keep track of blue objects
     if bestContour is not None:
         x,y,w,h = cv2.boundingRect(bestContour)
         cv2.rectangle(frame, (x,y),(x+w,y+h), (0,0,255), 3)
 
-    #Show the original camera feed with a bounding box overlayed 
+    #Show the original camera feed with a the tracking box
     cv2.imshow('frame',frame)
     #Show the contours in a seperate window
     cv2.imshow('mask',mask)
@@ -49,6 +54,6 @@ while(1):
     if k == 27:
         break
 
-
+#End
 cv2.destroyAllWindows()
 
