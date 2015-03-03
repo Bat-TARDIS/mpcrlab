@@ -1,3 +1,4 @@
+#Keep Track of any blue objects using OpenCV
 #Import OpenCV
 import cv2
 #Import Numpy
