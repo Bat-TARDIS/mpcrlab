@@ -7,6 +7,7 @@ import numpy as np
 #Open WebCam
 camera_feed = cv2.VideoCapture(0)
 
+#infinite loop
 while(1):
 
      #Read WebCam
@@ -16,13 +17,15 @@ while(1):
 
     #Define the threshold for finding a blue object with hsv.
     #The numbers in the array represent HSV colors, not RGB. If you want to track a different color then you must
-    #convert from RGB to HSV. Luckyly python has a module for that https://docs.python.org/2/library/colorsys.html
+    #convert from RGB to HSV. Python has a module for that https://docs.python.org/2/library/colorsys.html
+    
     #Lower Limits of Blue
     lower_blue = np.array([100,100,100])
     #Higher Limit of Blue
     upper_blue = np.array([150,255,255])
 
     #Create a mask where anything blue appears white and everything else is black
+    #inRage Checks if array elements lie between the elements of two other arrays.
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
     #Get rid of background noise
