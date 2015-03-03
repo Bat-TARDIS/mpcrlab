@@ -14,7 +14,9 @@ while(1):
     #Convert the current frame to HSV
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    #Define the threshold for finding a blue object with hsv
+    #Define the threshold for finding a blue object with hsv.
+    #The numbers in the array represent HSV colors, not RGB. If you want to track a different color then you must
+    #convert from RGB to HSV. Luckyly python has a module for that https://docs.python.org/2/library/colorsys.html
     #Lower Limits of Blue
     lower_blue = np.array([100,100,100])
     #Higher Limit of Blue
