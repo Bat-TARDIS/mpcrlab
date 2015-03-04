@@ -42,12 +42,17 @@ while(1):
         currentArea = cv2.contourArea(contour)
         if currentArea > maximumArea:
             bestContour = contour
-            maximumArea = currentArea
-            
+            #maximumArea = currentArea
+
+    #object_line= cv2.line(mask,)
+
+
      #Creates a box to keep track of blue objects
     if bestContour is not None:
         x,y,w,h = cv2.boundingRect(bestContour)
         cv2.rectangle(frame, (x,y),(x+w,y+h), (0,0,255), 3)
+
+
 
     #Show the original camera feed with a the tracking box
     cv2.imshow('frame',frame)
