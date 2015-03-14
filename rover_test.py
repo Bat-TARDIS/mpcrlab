@@ -1,14 +1,17 @@
-#!usr/bin/python
-# Import Color Tracking
-import track_color
-import Rover20
+import numpy as np
+import cv2
+cap = cv2.VideoCapture()
+cap.open("http://192.168.1.100/")
 
-class RoverMovingToColor:
+while(1):
+    ret, frame = cap.read()
 
-  def RoverMain ():
-      rover = Rover20()
-      move_rover = track_color.bestContour
-      if move_rover == True:
-          rover.setTreads(1,1)
+    gray = cv2.cvtColor(frame, cv2.COLOR_BAYER_BG2GRAY)
 
-  RoverMain()
+    cv2.imshow('frame', gray)
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()

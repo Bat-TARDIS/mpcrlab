@@ -3,17 +3,18 @@
 import cv2
 #Import Numpy
 import numpy as np
+import urllib2
 
 #Open WebCam
-camera_feed = cv2.VideoCapture(0)
+cap = cv2.VideoCapture("http://192.168.1.100:80/videostream.cgiAC13andAC13")
 
 #infinite loop
 while(1):
 
      #Read WebCam
-    _,frame = camera_feed.read() 
+    _,frame = cap.read()
     #Convert the current frame to HSV
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     #Define the threshold for finding a blue object with hsv.
     #The numbers in the array represent HSV colors, not RGB. If you want to track a different color then you must
