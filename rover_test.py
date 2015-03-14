@@ -1,17 +1,35 @@
-import numpy as np
+from rover import Rover20
+
+import time
+import pygame
+import sys
+import signal
 import cv2
-cap = cv2.VideoCapture()
-cap.open("http://192.168.1.100/")
 
-while(1):
-    ret, frame = cap.read()
+class roverMain(Rover20):
 
-    gray = cv2.cvtColor(frame, cv2.COLOR_BAYER_BG2GRAY)
+    def __init__(self):
+        Rover20.__init__()
+        self.window_name = "Rover 2.0 Hit Esc to Quit"
+        self.quit = False
 
-    cv2.imshow('frame', gray)
+        try:
+            if cv2:
+                cv2.namedWindow(self.window_name, cv2.CV_WINDOW_AUTOSIZE)
+            else:
+                pass
+        except:
+            pass
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    def video(self, jpegbytes, timestamp_10msec):
+        image = cv2.VideoCapture(0)
 
-cap.release()
-cv2.destroyAllWindows()
+        if cv2.waitKey(1) & 0xFF ==27 :
+            self.quit = True
+
+
+
+
+
+
+

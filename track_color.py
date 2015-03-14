@@ -3,10 +3,9 @@
 import cv2
 #Import Numpy
 import numpy as np
-import urllib2
 
 #Open WebCam
-cap = cv2.VideoCapture("http://192.168.1.100:80/videostream.cgiAC13andAC13")
+cap = cv2.VideoCapture(0)
 
 #infinite loop
 while(1):
@@ -27,7 +26,7 @@ while(1):
 
     #Create a mask where anything blue appears white and everything else is black
     #inRage Checks if array elements lie between the elements of two other arrays.
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    mask = cv2.inRange(hsv,lower_blue,upper_blue)
 
     #Get rid of background noise
     element = cv2.getStructuringElement(cv2.MORPH_RECT,(3,3))
