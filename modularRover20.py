@@ -57,12 +57,13 @@ class cv2Thread(threading.Thread):
 
 	# detect features
 	def processImage(self):
-
-
-
-
-
-
+		img = self.decodeImage()
+		keypoints = self.orb.detect(img,None)
+		keypoints, des = self.orb.compute(img, keypoints)
+		img = cv2.drawKeypoints(img, keypoints, color=(0,255,0))
+		self.lock.acquire()
+		self.image = cv2.imencode('.jpg', img)[1].tostring()
+		self.lock.release()
 
 
 
