@@ -11,14 +11,11 @@ from datetime import date
 from random import choice
 from string import ascii_lowercase, ascii_uppercase
 import StringIO
-import cv2
+
 import pygame
 from pygame.locals import *
+
 from rover import Rover20
-
-
-camera = cv2.VideoCapture()
-
 
 class KeyboardRover20(Rover20):
 	def __init__(self):
@@ -109,6 +106,7 @@ class KeyboardRover20(Rover20):
 
 	# live video feed
 	def refreshVideo(self):
+
 
 		#load image, update display
 		image = pygame.image.load(self.currentImage).convert()
