@@ -5,13 +5,13 @@ import cv2
 import numpy as np
 
 #Open WebCam
-cap = cv2.VideoCapture(0)
+camera_feed = cv2.VideoCapture(0)
 
 #infinite loop
 while(1):
 
      #Read WebCam
-    _,frame = cap.read()
+    _,frame = camera_feed.read()
     #Convert the current frame to HSV
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -22,7 +22,7 @@ while(1):
     #Lower Limits of Blue
     lower_blue = np.array([100,100,100])
     #Higher Limit of Blue
-    upper_blue = np.array([150,255,255])
+    upper_blue = np.array([130,255,255])
 
     #Create a mask where anything blue appears white and everything else is black
     #inRage Checks if array elements lie between the elements of two other arrays.
@@ -42,9 +42,9 @@ while(1):
         currentArea = cv2.contourArea(contour)
         if currentArea > maximumArea:
             bestContour = contour
-            #maximumArea = currentArea
+            maximumArea = currentArea
 
-    #object_line= cv2.line(mask,)
+    object_line= cv2.line(mask,)
 
 
      #Creates a box to keep track of blue objects
